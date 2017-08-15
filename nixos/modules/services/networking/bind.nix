@@ -5,7 +5,7 @@ with lib;
 let
 
   cfg = config.services.bind;
-
+n
   bindUser = "named";
 
   confFile = pkgs.writeText "named.conf"
@@ -32,7 +32,7 @@ let
       ${cfg.extraConfig}
 
       ${ concatMapStrings
-          ({ name, file, master ? true, slaves ? [], masters ? [] }:
+          ({ name, file, master ? true, slaves ? [], masters ? [], extraConfig? "" }:
             ''
               zone "${name}" {
                 type ${if master then "master" else "slave"};
@@ -52,6 +52,7 @@ let
                 }
                 allow-query { any; };
               };
+	      ${extraConfig}
             '')
           cfg.zones }
     '';
