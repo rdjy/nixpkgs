@@ -18169,6 +18169,7 @@ EOF
 
   spectral-cube = callPackage ../development/python-modules/spectral-cube { };
 
+  humanfriendly = callPackage ../development/python-modules/humanfriendly { };
 });
 
 in fix' (extends overrides packages)
